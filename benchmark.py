@@ -1,8 +1,14 @@
 import os
+import argparse
 import datatable as dt
 import pandas as pd
 import numpy as np
 import time
+
+def arg_parser():
+    parser = argparse.ArgumentParser(description='benchmark table data file formats')
+    parser.add_argument('--benchmark-name', help='', required=True)
+    return parser.parse_args()
 
 def convert_to_MB(size):
     return size/(1024*1024)
@@ -53,7 +59,8 @@ def benchmark_data(file_format, write_file, read_file, library, engine):
 if __name__ == '__main__':
     if not os.path.exists('files'):
         os.makedirs('files')
-    benchmark_name = 'data'
+    args = arg_parser()
+    benchmark_name = args.benchmark_name
     DT_df = dt.fread(f'{benchmark_name}.csv')
     pd_df = DT_df.to_pandas()
 
