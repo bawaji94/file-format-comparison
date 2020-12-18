@@ -125,4 +125,4 @@ if __name__ == '__main__':
         benchmarks.append(benchmark)
 
     pd.DataFrame(benchmarks).to_csv(f'{benchmark_name}_file_format_benchmark.csv', index=None)
-    os.remove('files')
+    os.rmdir('files')
