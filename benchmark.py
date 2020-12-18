@@ -35,9 +35,10 @@ def benchmark_data(file_format, write_file, read_file, library, engine):
         read_file()
         read_time_end = time.time()
         read_times.append(read_time_end - read_time_start)
+        file_size_in_bytes = os.path.getsize(file_name(file_format))
         os.remove(file_name(file_format))
 
-    file_size_in_bytes = os.path.getsize(file_name(file_format))
+
     file_size = convert_to_MB(file_size_in_bytes)
     file_size_text = f'{round(file_size, 2)}MB'
     if file_size < 1:
