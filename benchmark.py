@@ -39,17 +39,13 @@ def benchmark_data(file_format, write_file, read_file, library, engine):
         os.remove(file_name(file_format))
 
 
-    file_size = convert_to_MB(file_size_in_bytes)
-    file_size_text = f'{round(file_size, 2)}MB'
-    if file_size < 1:
-        file_size = convert_to_KB(file_size_in_bytes)
-        file_size_text = f'{round(file_size, 2)}KB'
+    file_size = round(convert_to_MB(file_size_in_bytes), 2)
     b = {
         'fileFormat': file_format,
         'library': library,
-        'average_write_time': round(np.mean(write_times), 4),
-        'average_read_time': round(np.mean(read_times), 4),
-        'sizeOnDisk': file_size_text,
+        'write_time': round(np.mean(write_times), 4),
+        'read_time': round(np.mean(read_times), 4),
+        'sizeOnDisk': file_size,
         'engine': engine
     }
     print(b)

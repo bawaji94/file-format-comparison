@@ -9,13 +9,13 @@ def anotate_value(ax, postfix=''):
                     xytext = (0, 9), 
                     textcoords = 'offset points')
 
-df = pd.read_csv('data_file_format_benchmark.csv')
+df = pd.read_csv('data_all_int_file_format_benchmark.csv')
 df = df[(df.fileFormat!='csv') | (df.library != 'pandas')]
 
 ax_read_write = df.plot.bar(x='fileFormat', y=['write_time', 'read_time'], rot=30, xlabel='')
 anotate_value(ax_read_write, postfix='s')
 
-ax_storage_size = df.plot.bar(x='fileFormat', y='sizeOnDisk', color='#ff7f0e', rot=30, xlabel='', legend=False)
+ax_storage_size = df.plot.bar(x='fileFormat', y='sizeOnDisk', rot=30, xlabel='', legend=False)
 anotate_value(ax_storage_size, postfix='MB')
 ax_storage_size.set_ylabel('Size of file on disk in MB', fontsize=12)
 plt.show()
