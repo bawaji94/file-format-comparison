@@ -59,7 +59,7 @@ if __name__ == '__main__':
         os.makedirs('files')
     args = arg_parser()
     benchmark_name = args.benchmark_name
-    DT_df = dt.fread(f'{benchmark_name}.csv')
+    DT_df = dt.fread(f'source/{benchmark_name}.csv')
     pd_df = DT_df.to_pandas()
 
     formats = [
@@ -122,5 +122,5 @@ if __name__ == '__main__':
         )
         benchmarks.append(benchmark)
 
-    pd.DataFrame(benchmarks).to_csv(f'{benchmark_name}_file_format_benchmark.csv', index=None)
+    pd.DataFrame(benchmarks).to_csv(f'benchmarks/{benchmark_name}_file_format_benchmark.csv', index=None)
     os.rmdir('files')
