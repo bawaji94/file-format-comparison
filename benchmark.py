@@ -10,14 +10,18 @@ def arg_parser():
     parser.add_argument('--benchmark-name', help='', required=True)
     return parser.parse_args()
 
+
 def convert_to_MB(size):
     return size/(1024*1024)
+
 
 def convert_to_KB(size):
     return size/1024
 
+
 def file_name(f):
     return f'./files/data.{f}'
+
 
 def benchmark_data(file_format, write_file, read_file, library, engine):
     write_times = []
@@ -38,7 +42,6 @@ def benchmark_data(file_format, write_file, read_file, library, engine):
         file_size_in_bytes = os.path.getsize(file_name(file_format))
         os.remove(file_name(file_format))
 
-
     file_size = round(convert_to_MB(file_size_in_bytes), 2)
     b = {
         'fileFormat': file_format,
@@ -50,8 +53,6 @@ def benchmark_data(file_format, write_file, read_file, library, engine):
     }
     print(b)
     return b
-
-    
 
 
 if __name__ == '__main__':
